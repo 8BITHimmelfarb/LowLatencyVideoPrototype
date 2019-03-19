@@ -1,5 +1,5 @@
 # pkg-config packages list
-PKGS := x264 libavutil libavformat libavcodec libswscale libv4l2 opencv sdl2 SDL_net
+PKGS := x264 libavutil libavformat libavcodec libswscale libv4l2 opencv
 PKG_CFLAGS := $(shell pkg-config --cflags $(PKGS))
 PKG_LDFLAGS := $(shell pkg-config --libs $(PKGS))
 
@@ -13,12 +13,6 @@ CXXFLAGS := $(CFLAGS)
 ALL_BUILDS = \
 	encoder\
 	v4l2_enumerate\
-	test_data_source\
-	test_data_source_tcp_server\
-	test_data_source_udp\
-	test_data_source_ocv\
-	viewer_stdin\
-	viewer_sdl\
 	network_joystick\
 
 all: .depend $(ALL_BUILDS)
@@ -34,24 +28,6 @@ encoder: encoder.o
 	g++ $? $(CFLAGS) -o $@ $(LDFLAGS)
 
 v4l2_enumerate: v4l2_enumerate.o
-	g++ $? -o $@ $(LDFLAGS)
-
-viewer_stdin: viewer_stdin.o data_source_ocv_avcodec.o x264_destreamer.o packet_server.o data_source_stdio_info.o
-	g++ $? -o $@ $(LDFLAGS)
-
-viewer_sdl: viewer_sdl.o x264_destreamer.o packet_server.o
-	g++ $? -o $@ $(LDFLAGS)
-
-test_data_source: test_data_source.o packet_server.o data_source_stdio.o data_source_stdio_info.o data_source_file.o
-	g++ $? -o $@ $(LDFLAGS)
-
-test_data_source_tcp_server: test_data_source_tcp_server.o packet_server.o data_source_stdio_info.o data_source_tcp_server.o
-	g++ $? -o $@ $(LDFLAGS)
-
-test_data_source_udp: test_data_source_udp.o packet_server.o data_source_stdio_info.o data_source_udp.o
-	g++ $? -o $@ $(LDFLAGS)
-
-test_data_source_ocv: test_data_source_ocv.o packet_server.o data_source_stdio_info.o data_source_ocv_avcodec.o
 	g++ $? -o $@ $(LDFLAGS)
 
 network_joystick: network_joystick.o
