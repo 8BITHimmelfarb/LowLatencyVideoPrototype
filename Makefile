@@ -4,7 +4,7 @@ PKG_CFLAGS := $(shell pkg-config --cflags $(PKGS))
 PKG_LDFLAGS := $(shell pkg-config --libs $(PKGS))
 
 ADD_CFLAGS := -g -D__STDC_CONSTANT_MACROS
-ADD_LDFLAGS := -lrt -lv4l1 -lv4l2 -lswscale -lx264
+ADD_LDFLAGS := -lrt -lswscale -lx264
 
 CFLAGS  := $(PKG_CFLAGS) $(ADD_CFLAGS) $(CFLAGS)
 LDFLAGS := $(PKG_LDFLAGS) $(ADD_LDFLAGS) $(LDFLAGS)
