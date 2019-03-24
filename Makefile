@@ -1,5 +1,5 @@
 # pkg-config packages list
-PKGS := x264 libavutil libavformat libavcodec libswscale libv4l2 opencv
+PKGS := x264 libavutil libavformat libavcodec libswscale opencv
 PKG_CFLAGS := $(shell pkg-config --cflags $(PKGS))
 PKG_LDFLAGS := $(shell pkg-config --libs $(PKGS))
 
@@ -12,7 +12,6 @@ CXXFLAGS := $(CFLAGS)
 
 ALL_BUILDS = \
 	encoder\
-	v4l2_enumerate\
 	
 all: .depend $(ALL_BUILDS)
 
@@ -25,9 +24,6 @@ SOURCES=`ls *.cpp`
 
 encoder: encoder.o
 	g++ $? $(CFLAGS) -o $@ $(LDFLAGS)
-
-v4l2_enumerate: v4l2_enumerate.o
-	g++ $? -o $@ $(LDFLAGS)
 
 clean:
 	rm -f *.o $(ALL_BUILDS)
