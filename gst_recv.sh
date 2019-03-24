@@ -1,6 +1,6 @@
 #!/bin/sh
 gst-launch -vvv \
-udpsrc port=1181 \
+udpsrc port=10000 \
 ! mpegtsdemux \
 ! ffdec_h264 \
 ! ffmpegcolorspace \
