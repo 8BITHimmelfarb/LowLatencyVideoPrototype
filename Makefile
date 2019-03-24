@@ -13,8 +13,7 @@ CXXFLAGS := $(CFLAGS)
 ALL_BUILDS = \
 	encoder\
 	v4l2_enumerate\
-	network_joystick\
-
+	
 all: .depend $(ALL_BUILDS)
 
 SOURCES=`ls *.cpp`
@@ -28,9 +27,6 @@ encoder: encoder.o
 	g++ $? $(CFLAGS) -o $@ $(LDFLAGS)
 
 v4l2_enumerate: v4l2_enumerate.o
-	g++ $? -o $@ $(LDFLAGS)
-
-network_joystick: network_joystick.o
 	g++ $? -o $@ $(LDFLAGS)
 
 clean:
